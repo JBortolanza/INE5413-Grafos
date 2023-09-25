@@ -87,3 +87,20 @@ class Grafo:
                         peso = float(partes[2])
                         self.arestas.append((u, v, peso))
                         self.num_arestas += 1
+                        
+    def conectado(self):
+        visitados = [False] * self.qtdVertices()
+        pilha = [1]  # Começando a partir do primeiro vértice (índice 0)
+        while pilha:
+            vertice = pilha.pop()
+            if not visitados[(vertice-1)]:
+                visitados[(vertice-1)] = True
+                for vizinho in self.vizinhos(vertice):
+                    pilha.append(vizinho)
+        return all(visitados)
+    
+    def GrafoEuleriano(self):
+        for v in self.vertices:
+            if self.grau(v) % 2 != 0:
+                return False
+        return self.conectado()
