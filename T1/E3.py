@@ -1,27 +1,27 @@
 from Grafo import *
-from collections import deque
 import sys
 
 def Hierholzer(grafo):
 
+    # Funcao de remover aresta visitada foi separada para melhorar entendimento
     def remove_aresta(u, v):
         for i, (x, y, peso) in enumerate(grafo.arestas):
             if (x == u and y == v) or (x == v and y == u):
                 grafo.arestas.pop(i)
                 break
 
-    def visitar_vertice(v):
-        nonlocal ciclo
+    def visitar_vertice(v, ciclo):
         while grafo.vizinhos(v):
             proximo_vizinho = grafo.vizinhos(v)[0] 
             remove_aresta(v, proximo_vizinho) 
-            visitar_vertice(proximo_vizinho)
+            visitar_vertice(proximo_vizinho, ciclo)
         ciclo.append(str(v))
 
     if not grafo.GrafoEuleriano(): # Caso o grafo nao seja euleriano ja retorna 0;
         return 0
+    
     ciclo = []
-    visitar_vertice(1)
+    visitar_vertice(1, ciclo) # Como vertice inicial nao importa sera sempre o primeiro
     return ciclo
 
 if __name__ == "__main__":

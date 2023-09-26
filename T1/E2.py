@@ -1,22 +1,21 @@
 from Grafo import *
-from collections import deque
 import sys
 
 def buscaLargura(grafo, origem):
     if origem not in grafo.vertices:
         return "Origem não existe no grafo"
     
-    niveis = {}  # Dicionário para armazenar os níveis dos vértices
-    fila = deque()  # Fila para realizar a busca em largura
+    niveis = {}  # Dicionario para armazenar os niveis dos vertices
+    fila = []  # Fila para realizar a busca em largura
     
     # Inicializa a busca a partir da origem
     fila.append(origem)
     niveis[origem] = 0
     
-    resultado = {}  # Dicionário para armazenar os vértices por nível
+    resultado = {}  # Dicionario para armazenar os vertices por nivel
     
     while fila:
-        vertice_atual = fila.popleft()
+        vertice_atual = fila.pop(0)
         
         if niveis[vertice_atual] not in resultado:
             resultado[niveis[vertice_atual]] = [vertice_atual]

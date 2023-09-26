@@ -75,22 +75,23 @@ class Grafo:
                 if lendo_vertices:
                     if line != '':
                         partes = line.split()
-                        indice = int(partes[0])  # Índice do vértice
-                        rotulo = ' '.join(partes[1:]).strip('"')  # Rótulo do vértice
+                        indice = int(partes[0])  # indice do vertice
+                        rotulo = ' '.join(partes[1:]).strip('"')  # Rotulo do vertice
                         self.vertices[indice] = rotulo
                         self.num_vertices += 1
                 else:
                     if line != '':
                         partes = line.split()
-                        u = int(partes[0])  # Índice do vértice u
-                        v = int(partes[1])  # Índice do vértice v
+                        u = int(partes[0]) 
+                        v = int(partes[1]) 
                         peso = float(partes[2])
                         self.arestas.append((u, v, peso))
                         self.num_arestas += 1
-                        
+
+    # Metodos para auxiliar o terceiro exercicio:                   
     def conectado(self):
         visitados = [False] * self.qtdVertices()
-        pilha = [1]  # Começando a partir do primeiro vértice (índice 0)
+        pilha = [1]  # Começando a partir do primeiro vertice
         while pilha:
             vertice = pilha.pop()
             if not visitados[(vertice-1)]:
